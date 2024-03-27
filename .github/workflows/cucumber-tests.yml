@@ -1,0 +1,36 @@
+name: Cucumber Tests
+
+on: [push, pull_request]
+
+jobs:
+  run-tests:
+    name: Run Cucumber Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Create report directory
+        run: mkdir -p report
+
+      - name: Run Cucumber tests and generate JSON report
+        run: yarn test
+
+      - name: Generate HTML report
+        run: yarn report
+
+      - name: Archive HTML report
+        uses: actions/upload-artifact@v2
+        with:
+          name: cucumber-html-report
+          path: report/cucumber_report.html

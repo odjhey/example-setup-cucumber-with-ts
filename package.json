@@ -2,15 +2,16 @@
   "name": "cucumber-example",
   "version": "1.0.0",
   "scripts": {
-    "test": "cucumber-js",
-    "test:watch": "nodemon --exec \"cucumber-js\" --ext ts,js,feature"
+    "test": "cucumber-js --format json:report/cucumber_report.json",
+    "test:watch": "nodemon --exec \"cucumber-js\" --ext ts,js,feature",
+    "report": "node generate-report.js"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^7.3.2",
     "@types/cucumber": "^7.0.0",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^14.14.31",
-    "cucumber-html-reporter": "^5.4.0",
+    "cucumber-html-reporter": "^7.1.1",
     "js-yaml": "^4.1.0",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
